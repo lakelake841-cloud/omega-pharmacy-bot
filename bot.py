@@ -66,7 +66,7 @@ def init_db():
 
 init_db()
 
-# Start keep alive web server
+# Start keep alive web server for 24/7 uptime
 keep_alive()
 
 def is_admin(user_id):
