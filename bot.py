@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 import sqlite3
 from datetime import datetime
+from keep_alive import keep_alive
 
 # Bot Token - Direct configuration for Replit
 TOKEN = '8564429139:AAEV_sVX0k-cmw4iVCwHo2y87r8qwPhsOag'
@@ -64,6 +65,9 @@ def init_db():
     conn.close()
 
 init_db()
+
+# Start keep alive web server
+keep_alive()
 
 def is_admin(user_id):
     return user_id == ADMIN_ID
