@@ -3,13 +3,13 @@ from telebot import types
 import sqlite3
 from datetime import datetime
 
-# Replace with your bot token from @BotFather
+# Bot Token - Direct configuration for Replit
 TOKEN = '8564429139:AAEV_sVX0k-cmw4iVCwHo2y87r8qwPhsOag'
 bot = telebot.TeleBot(TOKEN)
 
-# Admin and staff IDs - Add your Telegram IDs here
-ADMIN_ID = 5110033728  # Admin Telegram ID
-STAFF_IDS = [5110033728, 752640252, 0, 0]  # Replace remaining 0s with other 2 staff Telegram IDs
+# Admin and staff IDs
+ADMIN_ID = 5110033728
+STAFF_IDS = [5110033728, 752640252, 8576036710, 0]
 
 # Database setup
 def init_db():
