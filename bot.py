@@ -2,9 +2,9 @@ import telebot
 from telebot import types
 import sqlite3
 from datetime import datetime
-from keep_alive import keep_alive
+import os
 
-# Bot Token - Direct configuration for Replit
+# Bot Token
 TOKEN = '8564429139:AAEV_sVX0k-cmw4iVCwHo2y87r8qwPhsOag'
 bot = telebot.TeleBot(TOKEN)
 
@@ -12,9 +12,17 @@ bot = telebot.TeleBot(TOKEN)
 ADMIN_ID = 5110033728
 STAFF_IDS = [5110033728, 752640252, 8576036710, 0]
 
+# Database path - use /tmp for Render compatibility
+DB_PATH = os.environ.get('DATABASE_PATH', '/tmp/pharmacy.db')
+
+# Helper function to get database connection
+def get_db_connection():
+    return sqlite3.connect(DB_PATH)
+
 # Database setup
 def init_db():
-    conn = sqlite3.connect('pharmacy.db')
+    # Use /tmp for writable storage on Render
+    conn = get_db_connection()
     c = conn.cursor()
     
     c.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -65,9 +73,6 @@ def init_db():
     conn.close()
 
 init_db()
-
-# Start keep alive web server for 24/7 uptime
-keep_alive()
 
 def is_admin(user_id):
     return user_id == ADMIN_ID
